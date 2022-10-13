@@ -4,7 +4,7 @@ let form = document.getElementById('form');
 let movies = [];
 const url = 'https://api.themoviedb.org/3/discover/movie?api_key=26032962503d9eb1ca86e1e2d0ceb42f&sort_by=popularity.desc&page=1'
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'
-const searchAPI = `https://api.themoviedb.org/3/search/movie?api_key=26032962503d9eb1ca86e1e2d0ceb42f&query=${search}&page=1`
+
 
 // let getDataMovie = async () => {
 //     let response = await fetch();
@@ -59,6 +59,7 @@ function displayMovie(movies){
 form.addEventListener('submit', (e) => {
    e.preventDefault()
     search = search.value
+    const searchAPI = `https://api.themoviedb.org/3/search/movie?api_key=26032962503d9eb1ca86e1e2d0ceb42f&query=${search}&page=1`
     if(search && search !=''){
        getMovies(searchAPI + search)
         search = ''
