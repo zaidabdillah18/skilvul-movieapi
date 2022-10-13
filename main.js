@@ -4,7 +4,7 @@ let form = document.getElementById('form');
 let movies = [];
 const url = 'https://api.themoviedb.org/3/discover/movie?api_key=26032962503d9eb1ca86e1e2d0ceb42f&sort_by=popularity.desc&page=1'
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'
-const searchAPI = 'https://api.themoviedb.org/3/search/movie?api_key=26032962503d9eb1ca86e1e2d0ceb42f&query='
+const searchAPI = `https://api.themoviedb.org/3/search/movie?api_key=26032962503d9eb1ca86e1e2d0ceb42f&query=${search}&page=1`
 
 // let getDataMovie = async () => {
 //     let response = await fetch();
@@ -29,16 +29,19 @@ const searchAPI = 'https://api.themoviedb.org/3/search/movie?api_key=26032962503
 // }
 // getDataMovie();
 getMovies(url)
+
 async function getMovies(url){
     let response = await fetch(url);
     let datamovie = await response.json();
     displayMovie(datamovie.results)
    
 }
+
+
 function displayMovie(movies){
     home.innerHTML= 'halaman tidak di temukan'
     movies.forEach(element => {
-        home.innerHTML=`<div class="col-md-4">
+        home.innerHTML=` <div class="col-md-4">
                              <div class="card mb-4">
                                  <img src="${IMG_URL + element.poster_path}" class="card-img-top" alt="${element.title}">
                                  <div class="card-body">
@@ -57,7 +60,7 @@ form.addEventListener('submit', (e) => {
    e.preventDefault()
     search = search.value
     if(search && search !=''){
-        getMovies(searchAPI + search)
+       getMovies(searchAPI + search)
         search = ''
     }else{
         window.location.reload()
